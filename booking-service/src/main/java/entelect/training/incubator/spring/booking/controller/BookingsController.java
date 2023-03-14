@@ -1,4 +1,4 @@
-package entelect.training.incubator.spring.booking;
+package entelect.training.incubator.spring.booking.controller;
 
 import entelect.training.incubator.spring.booking.model.Booking;
 import entelect.training.incubator.spring.booking.model.BookingsSearchRequest;
@@ -67,7 +67,7 @@ public class BookingsController {
     public ResponseEntity<?> searchCustomers(@RequestBody BookingsSearchRequest searchRequest) {
         LOGGER.info("Processing booking search request for request {}", searchRequest);
 
-        List<Booking> customer = bookingsService.searchBookings(searchRequest);
+        Booking customer = bookingsService.searchBookings(searchRequest);
 
         if (customer != null) {
             return ResponseEntity.ok(customer);

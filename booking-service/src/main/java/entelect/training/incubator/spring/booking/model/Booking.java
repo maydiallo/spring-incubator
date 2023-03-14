@@ -1,7 +1,5 @@
 package entelect.training.incubator.spring.booking.model;
 
-import entelect.training.incubator.spring.customer.model.Customer;
-import entelect.training.incubator.spring.flight.model.Flight;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

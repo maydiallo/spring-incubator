@@ -9,6 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface BookingRepository extends CrudRepository<Booking, Integer> {
-    Optional<List<Booking>> findByReferenceNumber(String referenceNumber);
-    Optional<List<Booking>> findByCustomerID(Integer customerID);
+    Optional<Booking> findByReferenceNumber(String referenceNumber);
+    Optional<Booking> findByCustomerID(Integer customerID);
 }
