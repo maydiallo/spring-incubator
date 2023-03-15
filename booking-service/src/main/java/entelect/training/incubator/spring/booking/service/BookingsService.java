@@ -35,13 +35,24 @@ public class BookingsService {
         return bookingOptional.orElse(null);
     }
 
-    public Booking searchBookings(BookingsSearchRequest searchRequest) {
-        Map<SearchType, Supplier<Optional<Booking>>>searchStrategies = new HashMap<>();
+//    public Booking searchBookings(BookingsSearchRequest searchRequest) {
+//        Map<SearchType, Supplier<Optional<Booking>>>searchStrategies = new HashMap<>();
+//
+//        searchStrategies.put(SearchType.CUSTOMER_ID_SEARCH, () -> bookingRepository.findByCustomerID(searchRequest.getCustomerID()));
+//        searchStrategies.put(SearchType.REFERENCE_NUMBER_SEARCH, () -> bookingRepository.findByReferenceNumber(searchRequest.getReferenceNumber()));
+//
+//        Optional<Booking> bookingOptional = searchStrategies.get(searchRequest.getSearchType()).get();
+//
+//        return bookingOptional.orElse(null);
+//    }
+
+    public List<Booking> searchBookings(BookingsSearchRequest searchRequest) {
+        Map<SearchType, Supplier<Optional<List<Booking>>>>searchStrategies = new HashMap<>();
 
         searchStrategies.put(SearchType.CUSTOMER_ID_SEARCH, () -> bookingRepository.findByCustomerID(searchRequest.getCustomerID()));
         searchStrategies.put(SearchType.REFERENCE_NUMBER_SEARCH, () -> bookingRepository.findByReferenceNumber(searchRequest.getReferenceNumber()));
 
-        Optional<Booking> bookingOptional = searchStrategies.get(searchRequest.getSearchType()).get();
+        Optional<List<Booking>> bookingOptional = searchStrategies.get(searchRequest.getSearchType()).get();
 
         return bookingOptional.orElse(null);
     }

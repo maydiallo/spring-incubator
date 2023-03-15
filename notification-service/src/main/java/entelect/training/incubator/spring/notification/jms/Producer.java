@@ -1,4 +1,4 @@
-package entelect.training.incubator.spring.notification.sms.client.impl;
+package entelect.training.incubator.spring.notification.jms;
 
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package entelect.training.incubator.spring.notification.sms.client.impl;
+package entelect.training.incubator.spring.notification.jms;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.springframework.context.annotation.Bean;
