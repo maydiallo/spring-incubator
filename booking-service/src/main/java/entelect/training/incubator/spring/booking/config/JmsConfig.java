@@ -1,10 +1,11 @@
-package entelect.training.incubator.spring.notification.jms;
+package entelect.training.incubator.spring.booking.config;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.core.JmsTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
 public class JmsConfig {
@@ -30,15 +31,8 @@ public class JmsConfig {
        return template;
    }
 
-
-
-   @Bean
-   public DefaultJmsListenerContainerFactory jmsListenerContainerFactory() {
-       DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
-       factory.setConnectionFactory(connectionFactory());
-       factory.setConcurrency("1-1");
-       factory.setPubSubDomain(false);
-       return factory;
-   }
-
+    @Bean
+    WebClient webClient(WebClient.Builder builder) {
+        return builder.build();
+    }
 }

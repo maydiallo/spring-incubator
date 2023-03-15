@@ -1,8 +1,6 @@
 package entelect.training.incubator.spring.booking.controller;
 
-import entelect.training.incubator.spring.booking.model.Booking;
-import entelect.training.incubator.spring.booking.model.BookingsSearchRequest;
-import entelect.training.incubator.spring.booking.model.SearchType;
+import entelect.training.incubator.spring.booking.model.*;
 import entelect.training.incubator.spring.booking.service.BookingsService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -64,43 +62,12 @@ public class BookingsController {
         return ResponseEntity.notFound().build();
     }
 
-//    @PostMapping("/search")
-//    public ResponseEntity<?> searchCustomers(@RequestBody String referenceNumber) {
-////        SearchType request= SearchType.CUSTOMER_ID_SEARCH;
-//         LOGGER.info("Processing booking search request for reference number");
-//
-//        Booking customer = bookingsService.searchBookings(searchRequest);
-//
-//        if (customer != null) {
-//            return ResponseEntity.ok(customer);
-//        }
-//
-//        LOGGER.trace("Booking not found");
-//        return ResponseEntity.notFound().build();
-//    }
-//
-//
-//    @PostMapping("/search")
-//    public ResponseEntity<?> searchCustomers(@RequestBody Integer customerID) {
-////        SearchType request= SearchType.CUSTOMER_ID_SEARCH;
-//        LOGGER.info("Processing booking search request for request {}", searchRequest);
-//
-//        Booking customer = bookingsService.searchBookings(searchRequest);
-//
-//        if (customer != null) {
-//            return ResponseEntity.ok(customer);
-//        }
-//
-//        LOGGER.trace("Booking not found");
-//        return ResponseEntity.notFound().build();
-//    }
-
-    @PostMapping("/search")
-    public ResponseEntity<?> searchCustomers(@RequestBody BookingsSearchRequest searchRequest) {
+    @PostMapping("/search/reference")
+    public ResponseEntity<?> searchCustomersWithRef(@RequestBody BookingsReferenceSearchRequest referenceNumber) {
 //        SearchType request= SearchType.CUSTOMER_ID_SEARCH;
-        LOGGER.info("Processing booking search request for request {}", searchRequest);
+         LOGGER.info("Processing booking search request for reference number");
 
-        List<Booking> customer = bookingsService.searchBookings(searchRequest);
+        List<Booking> customer = bookingsService.searchBookingsWithRef(referenceNumber);
 
         if (customer != null) {
             return ResponseEntity.ok(customer);
@@ -109,4 +76,36 @@ public class BookingsController {
         LOGGER.trace("Booking not found");
         return ResponseEntity.notFound().build();
     }
+
+
+    @PostMapping("/search/customer")
+    public ResponseEntity<?> searchCustomersWithID(@RequestBody BookingsIDSearchRequest customerID) {
+//        SearchType request= SearchType.CUSTOMER_ID_SEARCH;
+        LOGGER.info("Processing booking search request for customer ID");
+
+        List<Booking> customer = bookingsService.searchBookingsWithCustomer(customerID);
+
+        if (customer != null) {
+            return ResponseEntity.ok(customer);
+        }else {
+            LOGGER.trace("Booking not found");
+            return ResponseEntity.notFound().build();
+        }
+
+
+    }
+
+//    @PostMapping("/search")
+//    public ResponseEntity<?> searchCustomers(@RequestBody BookingsSearchRequest searchRequest) {
+//        LOGGER.info("Processing booking search request for request {}", searchRequest);
+//
+//        List<Booking> customer = bookingsService.searchBookings(searchRequest);
+//
+//        if (customer != null) {
+//            return ResponseEntity.ok(customer);
+//        }
+//
+//        LOGGER.trace("Booking not found");
+//        return ResponseEntity.notFound().build();
+//    }
 }
