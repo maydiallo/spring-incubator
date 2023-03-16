@@ -9,6 +9,14 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
+  activemq:
+    user: admin
+    password: admin
+    broker-url: tcp://localhost:61616
+#  autoconfigure:
+#    exclude[0]: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+#    exclude[1]: org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration
+
 
 server:
   port: 8080

@@ -27,7 +27,6 @@ public class BookingsService {
     public BookingsService(BookingRepository bookingRepository, WebClient localApiClient, JmsTemplate jmsTemplate) {
         this.bookingRepository = bookingRepository;
         this.localApiClient = localApiClient;
-//        this.localApiClient = localApiClient;
         this.jmsTemplate=jmsTemplate;
 
     }
@@ -41,16 +40,17 @@ public class BookingsService {
         {
             return null;
         }else {
-        jmsTemplate.convertAndSend("booking", sendSMS(customer.getFirstName(), customer.getLastName(),
+        jmsTemplate.convertAndSend("confirmation message", sendSMS(customer.getPhoneNumber(),customer.getFirstName(), customer.getLastName(),
                 flight.getFlightNumber(),flight.getDepartureTime().toLocalDate()));
             return bookingRepository.save(booking);
         }
 
     }
 
-    public String sendSMS(String name, String surname, String flightNumber,LocalDate flightDate)
+    public String sendSMS(String number, String name, String surname, String flightNumber,LocalDate flightDate)
     {
-         return "Molo Air: Confirming flight "+ flightNumber+" booked for "+ name
+        return number +"\r\n" +
+          "Molo Air: Confirming flight "+ flightNumber+" booked for "+ name
                 +" " + surname+ " on "+flightDate.toString()+".";
     }
 

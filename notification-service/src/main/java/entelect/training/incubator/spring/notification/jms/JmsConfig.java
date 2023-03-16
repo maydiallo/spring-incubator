@@ -21,17 +21,6 @@ public class JmsConfig {
        connectionFactory.setUserName(BROKER_PASSWORD);
        return connectionFactory;
    }
-
-   @Bean
-   public JmsTemplate jmsTemplate(){
-       JmsTemplate template = new JmsTemplate();
-       template.setConnectionFactory(connectionFactory());
-       template.setPubSubDomain(false);
-       return template;
-   }
-
-
-
    @Bean
    public DefaultJmsListenerContainerFactory jmsListenerContainerFactory() {
        DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();

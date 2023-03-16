@@ -35,11 +35,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable() // !!! Disclaimer: NEVER DISABLE CSRF IN PRODUCTION !!!
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/bookings/**").hasRole("USER")
-                .antMatchers(HttpMethod.POST, "/bookings/**").hasRole("USER")
-//                .anyRequest().denyAll()
-                .and()
-                .httpBasic();
+//                .antMatchers(HttpMethod.GET, "/bookings/**").hasRole("USER")
+//                .antMatchers(HttpMethod.POST, "/bookings/**").hasRole("USER")
+                .antMatchers(HttpMethod.GET, "/bookings/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/bookings/**").permitAll();
+//                .anyRequest().permitAll()
+//                .and()
+//                .httpBasic();
     }
 
 }

@@ -37,11 +37,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable() // !!! Disclaimer: NEVER DISABLE CSRF IN PRODUCTION !!!
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/flights/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/flights/**").hasAnyRole("ADMIN", "USER")
-                .antMatchers(HttpMethod.GET, "/flights/specials/**").hasRole("LOYALTY_USER")
+//                .antMatchers(HttpMethod.POST, "/flights/**").hasAnyRole("ADMIN", "USER")
+//                .antMatchers(HttpMethod.GET, "/flights/specials/**").hasRole("LOYALTY_USER")
+                .antMatchers(HttpMethod.POST, "/flights/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/flights/specials/**").permitAll();
 //                .anyRequest().denyAll()
-                .and()
-                .httpBasic();
+//                .and()
+//                .httpBasic();
     }
 
 }

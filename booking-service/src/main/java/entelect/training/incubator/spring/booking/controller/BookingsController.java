@@ -24,6 +24,7 @@ public class BookingsController {
         this.bookingsService = bookingsService;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200/")
     @PostMapping
     public ResponseEntity<?> createBooking(@RequestBody Booking booking) {
         LOGGER.info("Processing booking creation request for booking={}", booking);
@@ -34,6 +35,8 @@ public class BookingsController {
         return new ResponseEntity<>(savedBooking, HttpStatus.CREATED);
     }
 
+
+    @CrossOrigin(origins = "http://localhost:4200/")
     @GetMapping
     public ResponseEntity<?> getBookings() {
         LOGGER.info("Fetching all bookings");
@@ -48,6 +51,7 @@ public class BookingsController {
         return ResponseEntity.notFound().build();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200/")
     @GetMapping("{id}")
     public ResponseEntity<?> getBookingById(@PathVariable Integer id) {
         LOGGER.info("Processing booking search request for booking id={}", id);
@@ -62,6 +66,7 @@ public class BookingsController {
         return ResponseEntity.notFound().build();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200/")
     @PostMapping("/search/reference")
     public ResponseEntity<?> searchCustomersWithRef(@RequestBody BookingsReferenceSearchRequest referenceNumber) {
 //        SearchType request= SearchType.CUSTOMER_ID_SEARCH;
@@ -78,6 +83,7 @@ public class BookingsController {
     }
 
 
+    @CrossOrigin(origins = "http://localhost:4200/")
     @PostMapping("/search/customer")
     public ResponseEntity<?> searchCustomersWithID(@RequestBody BookingsIDSearchRequest customerID) {
 //        SearchType request= SearchType.CUSTOMER_ID_SEARCH;
